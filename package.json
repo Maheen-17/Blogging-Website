@@ -1,0 +1,10 @@
+{
+  "name": "Blogging-Website",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "parcel build src/*.html --dist-dir dist"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
