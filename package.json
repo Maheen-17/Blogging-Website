@@ -2,8 +2,9 @@
   "name": "Blogging-Website",
   "version": "1.0.0",
   "description": "A simple blogging website with GitHub Actions CI/CD",
-  "scripts": {
-    "build": "parcel build src/*.html"
+ "scripts": {
+  "build": "parcel build src/index.html src/blog.html src/contact.html"
+}
   },
   "devDependencies": {
     "parcel": "^2.9.3"
