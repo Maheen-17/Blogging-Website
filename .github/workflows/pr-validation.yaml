@@ -5,26 +5,44 @@ on:
     branches: [develop]
 
 jobs:
-  lint-and-build:
+  lint:
+    name: Lint HTML and CSS
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Lint HTML
-      run: npx htmlhint "src/**/*.html"
+      - name: Lint HTML
+        run: npx htmlhint "src/**/*.html"
 
-    - name: Lint CSS
-      run: npx stylelint "styles/**/*.css"
+      - name: Lint CSS
+        run: npx stylelint "styles/**/*.css"
 
-    - name: Build with Parcel
-      run: npm run build
+  build:
+    name: Build with Parcel
+    runs-on: ubuntu-latest
+    needs: lint  # 👈 Only run if lint passed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with Parcel
+        run: npm run build
